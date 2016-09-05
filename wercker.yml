@@ -24,7 +24,7 @@ build:
         name: setup
         code: |
           apt-get update
-          apt-get install gcc-avr avr-libc dfu-programmer
+          apt-get install -y gcc-avr avr-libc dfu-programmer
     - script:
         name: make
         code: |
