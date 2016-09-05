@@ -25,6 +25,7 @@ build:
         code: |
           apt-get update
           apt-get install -y gcc-avr avr-libc dfu-programmer
+          apt-get install -y build-essential
     - script:
         name: make
         code: |
