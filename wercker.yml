@@ -21,7 +21,12 @@ build:
     # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     - script:
-        name: echo
+        name: setup
+        code: |
+          apt-get update
+          apt-get install gcc-avr avr-libc dfu-programmer
+    - script:
+        name: make
         code: |
           cd ./keyboard/ergodox_ez
           make KEYMAP=$TARGET_KEYMAP
