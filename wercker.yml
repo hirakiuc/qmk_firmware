@@ -37,3 +37,5 @@ release:
     - tcnksm/ghr:
         token: $GITHUB_TOKEN
         input: ./keyboard/ergodox_ez/ergodox_ez.hex
+        pre_release: true
+        replace: true
