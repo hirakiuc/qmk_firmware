@@ -1,6 +1,8 @@
-#include "ergodox_ez.h"
+#include "ergodox.h"
 #include "debug.h"
 #include "action_layer.h"
+#include "sendchar.h"
+#include "virtser.h"
 
 #define BASE 0 // default layer
 #define SYMB 1 // symbols
