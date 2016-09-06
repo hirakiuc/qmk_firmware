@@ -1,9 +1,10 @@
-keyboard/planck/dfu-programmer.exe
 .dep
 *.o
 *.eep
 *.elf
 *.hex
+!util/bootloader.hex
+!quantum/tools/eeprom_reset.hex
 *.log
 *.lss
 *.lst
@@ -13,8 +14,10 @@ keyboard/planck/dfu-programmer.exe
 tags
 *~
 build/
+.build/
 *.bak
 .vagrant/
+quantum/version.h
 .idea/
 CMakeLists.txt
 .DS_STORE
@@ -24,3 +27,5 @@ CMakeLists.txt
 .project
 .settings/
 .idea
+.browse.VC.db*
+*.stackdump
