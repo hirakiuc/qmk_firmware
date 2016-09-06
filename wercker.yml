@@ -29,13 +29,15 @@ build:
     - script:
         name: make
         code: |
-          cd ./keyboard/ergodox_ez
-          make KEYMAP=$TARGET_KEYMAP
+          git submodule sync --recirsive
+          git submodule update --init --recursive
+          cd ./keyboards/ergodox/
+          make ez-hirakiuc
 
 release:
   steps:
     - tcnksm/ghr:
         token: $GITHUB_TOKEN
-        input: ./keyboard/ergodox_ez/ergodox_ez.hex
+        input: ./.build/ergodox_ez_hirakiuc.hex
         pre_release: true
         replace: true
