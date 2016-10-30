@@ -72,9 +72,11 @@ Here are the steps
 3. If you are going to flash Infinity based keyboards you will need to install dfu-util, refer to the instructions by [Input Club](https://github.com/kiibohd/controller/wiki/Loading-DFU-Firmware).
 4. Install [MinGW](https://sourceforge.net/projects/mingw/files/Installer/mingw-get-setup.exe/download). During installation, uncheck the option to install a graphical user interface. **DO NOT change the default installation folder.** The scripts depend on the default location.
 5. Clone this repository. [This link will download it as a zip file, which you'll need to extract.](https://github.com/jackhumbert/qmk_firmware/archive/master.zip) Open the extracted folder in Windows Explorer.
-6. Double-click on the 1-setup-path-win batch script to run it. You'll need to accept a User Account Control prompt. Press the spacebar to dismiss the success message in the command prompt that pops up.
-7. Right-click on the 2-setup-environment-win batch script, select "Run as administrator", and accept the User Account Control prompt. This part may take a couple of minutes, and you'll need to approve a driver installation, but once it finishes, your environment is complete!
-8. Future build commands should be run from the MHV AVR Shell, which sets up an environment compatible with colorful build output. The standard Command Prompt will also work, but add `COLOR=false` to the end of all make commands when using it.
+6. Open the `\util` folder.
+7. Double-click on the `1-setup-path-win` batch script to run it. You'll need to accept a User Account Control prompt. Press the spacebar to dismiss the success message in the command prompt that pops up.
+8. Right-click on the `2-setup-environment-win` batch script, select "Run as administrator", and accept the User Account Control prompt. This part may take a couple of minutes, and you'll need to approve a driver installation, but once it finishes, your environment is complete!
+
+If you have trouble and want to ask for help, it is useful to generate a *Win_Check_Output.txt* file by running `Win_Check.bat` in the `\util` folder.
 
 ### Mac
 If you're using [homebrew,](http://brew.sh/) you can use the following commands:
@@ -97,7 +99,7 @@ If you are going to flash Infinity based keyboards you will also need dfu-util
 
 ### Linux
 
-To ensure you are always up to date, you can just run `sudo utils/install_dependencies.sh`. That should always install all the dependencies needed.
+To ensure you are always up to date, you can just run `sudo util/install_dependencies.sh`. That should always install all the dependencies needed.
 
 You can also install things manually, but this documentation might not be always up to date with all requirements.
 
@@ -137,6 +139,9 @@ If this is a bit complex for you, Docker might be the turn-key solution you need
 # defaults are ergodox/default
 
 docker run -e keymap=gwen -e keyboard=ergodox --rm -v $('pwd'):/qmk:rw edasque/qmk_firmware
+
+# On windows docker seems to have issue with VOLUME tag in Dockerfile, and $('pwd') won't print a windows compliant path, use full path instead like this
+docker run -e keymap=default -e keyboard=ergobop --rm -v D:/Users/Sacapuces/Documents/Repositories/qmk:/qmk:rw edasque/qmk_firmware
 
 ```
 
@@ -278,11 +283,23 @@ This allows you to use the system and audio control key codes.
 
 `CONSOLE_ENABLE`
 
-This allows you to print messages that can be read using [`hid_listen`](https://www.pjrc.com/teensy/hid_listen.html). Add this to your `Makefile`, and set it to `yes`. Then put `println`, `printf`, etc. in your keymap or anywhere in the `qmk` source. Finally, open `hid_listen` and enjoy looking at your printed messages.
+This allows you to print messages that can be read using [`hid_listen`](https://www.pjrc.com/teensy/hid_listen.html). 
+
+By default, all debug (*dprint*) print (*print*, *xprintf*), and user print (*uprint*) messages will be enabled. This will eat up a significant portion of the flash and may make the keyboard .hex file too big to program. 
+
+To disable debug messages (*dprint*) and reduce the .hex file size, include `#define NO_DEBUG` in your `config.h` file.
+
+To disable print messages (*print*, *xprintf*) and user print messages (*uprint*) and reduce the .hex file size, include `#define NO_PRINT` in your `config.h` file.
+
+To disable print messages (*print*, *xprintf*) and **KEEP** user print messages (*uprint*), include `#define USER_PRINT` in your `config.h` file.
+
+To see the text, open `hid_listen` and enjoy looking at your printed messages.
+
+**NOTE:** Do not include *uprint* messages in anything other than your keymap code. It must not be used within the QMK system framework. Otherwise, you will bloat other people's .hex files. 
 
 `COMMAND_ENABLE`
 
-TODO
+This enables magic commands, typically fired with the default magic key combo `LSHIFT+RSHIFT+KEY`. Magic commands include turning on debugging messages (`MAGIC+D`) or temporarily toggling NKRO (`MAGIC+N`).
 
 `SLEEP_LED_ENABLE`
 
@@ -290,7 +307,7 @@ Enables your LED to breath while your computer is sleeping. Timer1 is being used
 
 `NKRO_ENABLE`
 
-This allows for n-key rollover (default is 6) to be enabled. It is off by default, but can be forced by adding `#define FORCE_NKRO` to your config.h.
+This allows the keyboard to tell the host OS that up to 248 keys are held down at once (default without NKRO is 6). NKRO is off by default, even if `NKRO_ENABLE` is set. NKRO can be forced by adding `#define FORCE_NKRO` to your config.h or by binding `MAGIC_TOGGLE_NKRO` to a key and then hitting the key.
 
 `BACKLIGHT_ENABLE`
 
@@ -305,6 +322,18 @@ This enables MIDI sending and receiving with your keyboard. To enter MIDI send m
 `UNICODE_ENABLE`
 
 This allows you to send unicode symbols via `UC(<unicode>)` in your keymap. Only codes up to 0x7FFF are currently supported.
+
+`UNICODEMAP_ENABLE`
+
+This allows sending unicode symbols using `X(<unicode>)` in your keymap. Codes
+up to 0xFFFFFFFF are supported, including emojis. You will need to maintain
+a separate mapping table in your keymap file.
+
+Known limitations:
+- Under Mac OS, only codes up to 0xFFFF are supported.
+- Under Linux ibus, only codes up to 0xFFFFF are supported (but anything important is still under this limit for now).
+
+Characters out of range supported by the OS will be ignored.
 
 `BLUETOOTH_ENABLE`
 
@@ -361,6 +390,8 @@ Instead of using `FNx` when defining `ACTION_*` functions, you can use `F(x)` - 
 `LT(layer, kc)` - momentary switch to *layer* when held, and *kc* when tapped. Like `MO()`, this only works upwards in the layer stack (`layer` must be higher than the current layer).
 
 `TG(layer)` - toggles a layer on or off. As with `MO()`, you should set this key as `KC_TRNS` in the destination layer so that tapping it again actually toggles back to the original layer. Only works upwards in the layer stack.
+
+`TO(layer)` - Goes to a layer. This code is special, because it lets you go either up or down the stack -- just goes directly to the layer you want. So while other codes only let you go _up_ the stack (from layer 0 to layer 3, for example), `TO(2)` is going to get you to layer 2, no matter where you activate it from -- even if you're currently on layer 5. This gets activated on keydown (as soon as the key is pressed).
 
 
 ### Fun with modifier keys
@@ -512,7 +543,7 @@ This array specifies what actions shall be taken when a tap-dance key is in acti
 
 * `ACTION_TAP_DANCE_DOUBLE(kc1, kc2)`: Sends the `kc1` keycode when tapped once, `kc2` otherwise. When the key is held, the appropriate keycode is registered: `kc1` when pressed and held, `kc2` when tapped once, then pressed and held.
 * `ACTION_TAP_DANCE_FN(fn)`: Calls the specified function - defined in the user keymap - with the final tap count of the tap dance action.
-* `ACTION_TAP_DANCE_FN_ADVANCED(on_each_tap_fn, on_dance_finished_fn, on_reset_fn)`: Calls the first specified function - defined in the user keymap - on every tap, the second function on when the dance action finishes (like the previous option), and the last function when the tap dance action resets.
+* `ACTION_TAP_DANCE_FN_ADVANCED(on_each_tap_fn, on_dance_finished_fn, on_dance_reset_fn)`: Calls the first specified function - defined in the user keymap - on every tap, the second function on when the dance action finishes (like the previous option), and the last function when the tap dance action resets.
 
 The first option is enough for a lot of cases, that just want dual roles. For example, `ACTION_TAP_DANCE(KC_SPC, KC_ENT)` will result in `Space` being sent on single-tap, `Enter` otherwise.
 
@@ -809,7 +840,7 @@ And then, to assign this macro to a key on your keyboard layout, you just use `M
 
 ## Dynamic macros: record and replay macros in runtime
 
-In addition to the static macros described above, you may enable the dynamic macros which you may record while writing. They are forgotten as soon as the keyboard is unplugged. Only two such macros may be stored at the same time, with the total length of 128 keypresses.
+In addition to the static macros described above, you may enable the dynamic macros which you may record while writing. They are forgotten as soon as the keyboard is unplugged. Only two such macros may be stored at the same time, with the total length of 64 keypresses (by default).
 
 To enable them, first add a new element to the `planck_keycodes` enum -- `DYNAMIC_MACRO_RANGE`:
 
@@ -850,7 +881,7 @@ Add the following code to the very beginning of your `process_record_user()` fun
 
 To start recording the macro, press either `DYN_REC_START1` or `DYN_REC_START2`. To finish the recording, press the `_DYN` layer button. The handler awaits specifically for the `MO(_DYN)` keycode as the "stop signal" so please don't use any fancy ways to access this layer, use the regular `MO()` modifier. To replay the macro, press either `DYN_MACRO_PLAY1` or `DYN_MACRO_PLAY2`.
 
-If the LED-s start blinking during the recording with each keypress, it means there is no more space for the macro in the macro buffer. To fit the macro in, either make the other macro shorter (they share the same buffer) or increase the buffer size by setting the `DYNAMIC_MACRO_SIZE` preprocessor macro (default value: 256; please read the comments for it in the header).
+If the LED-s start blinking during the recording with each keypress, it means there is no more space for the macro in the macro buffer. To fit the macro in, either make the other macro shorter (they share the same buffer) or increase the buffer size by setting the `DYNAMIC_MACRO_SIZE` preprocessor macro (default value: 128; please read the comments for it in the header).
 
 For the details about the internals of the dynamic macros, please read the comments in the `dynamic_macro.h` header.
 
