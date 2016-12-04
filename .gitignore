@@ -1,3 +1,5 @@
+.wercker
+
 .dep
 *.o
 *.eep

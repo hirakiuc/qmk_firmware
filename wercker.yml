@@ -24,16 +24,11 @@ build:
         name: setup
         code: |
           apt-get update
-          apt-get install -y git
-          apt-get install -y gcc-avr avr-libc dfu-programmer
-          apt-get install -y build-essential
+          apt-get install -y cmake gcc-avr avr-libc dfu-programmer
     - script:
         name: make
         code: |
-          git submodule sync --recirsive
-          git submodule update --init --recursive
-          cd ./keyboards/ergodox/
-          make ez-hirakiuc
+          make ergodox-ez-hirakiuc
 
 release:
   steps:
