@@ -23,12 +23,13 @@ build:
     - script:
         name: make
         code: |
-          make ergodox-ez-hirakiuc
+          make clean; make keyboard=ergodox subproject=ez keymap=hirakiuc
+          ls ./
 
 release:
   steps:
     - tcnksm/ghr:
         token: $GITHUB_TOKEN
-        input: ./.build/ergodox_ez_hirakiuc.hex
+        input: ./ergodox_ez_hirakiuc.hex
         pre_release: true
         replace: true
