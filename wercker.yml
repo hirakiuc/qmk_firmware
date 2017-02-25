@@ -24,7 +24,12 @@ build:
         name: make
         code: |
           make clean; make keyboard=ergodox subproject=ez keymap=hirakiuc
-          ls ./
+  after-steps:
+    - script:
+        name: copy build result
+        code: |
+          ls -l ./*.hex
+          cp ./ergodox_ez_hirakiuc.hex ${WERCKER_REPORT_ARTIFACTS_DIR}
 
 release:
   steps:
