@@ -131,9 +131,22 @@ ifndef CUSTOM_MATRIX
 	SRC += $(QUANTUM_DIR)/matrix.c
 endif
 
+ifeq ($(strip $(API_SYSEX_ENABLE)), yes)
+	OPT_DEFS += -DAPI_SYSEX_ENABLE
+	SRC += $(QUANTUM_DIR)/api/api_sysex.c
+	OPT_DEFS += -DAPI_ENABLE
+	SRC += $(QUANTUM_DIR)/api.c
+    MIDI_ENABLE=yes
+endif
+
 ifeq ($(strip $(MIDI_ENABLE)), yes)
     OPT_DEFS += -DMIDI_ENABLE
 	SRC += $(QUANTUM_DIR)/process_keycode/process_midi.c
+endif
+
+ifeq ($(strip $(COMBO_ENABLE)), yes)
+    OPT_DEFS += -DCOMBO_ENABLE
+	SRC += $(QUANTUM_DIR)/process_keycode/process_combo.c
 endif
 
 ifeq ($(strip $(VIRTSER_ENABLE)), yes)
@@ -148,18 +161,26 @@ ifeq ($(strip $(AUDIO_ENABLE)), yes)
 	SRC += $(QUANTUM_DIR)/audio/luts.c
 endif
 
+ifeq ($(strip $(FAUXCLICKY_ENABLE)), yes)
+    OPT_DEFS += -DFAUXCLICKY_ENABLE
+	SRC += $(QUANTUM_DIR)/fauxclicky.c
+endif
+
 ifeq ($(strip $(UCIS_ENABLE)), yes)
 	OPT_DEFS += -DUCIS_ENABLE
-	UNICODE_ENABLE = yes
+	SRC += $(QUANTUM_DIR)/process_keycode/process_unicode_common.c
+	SRC += $(QUANTUM_DIR)/process_keycode/process_ucis.c
 endif
 
 ifeq ($(strip $(UNICODEMAP_ENABLE)), yes)
 	OPT_DEFS += -DUNICODEMAP_ENABLE
-	UNICODE_ENABLE = yes
+	SRC += $(QUANTUM_DIR)/process_keycode/process_unicode_common.c
+	SRC += $(QUANTUM_DIR)/process_keycode/process_unicodemap.c
 endif
 
 ifeq ($(strip $(UNICODE_ENABLE)), yes)
     OPT_DEFS += -DUNICODE_ENABLE
+	SRC += $(QUANTUM_DIR)/process_keycode/process_unicode_common.c
 	SRC += $(QUANTUM_DIR)/process_keycode/process_unicode.c
 endif
 
@@ -172,6 +193,12 @@ endif
 ifeq ($(strip $(TAP_DANCE_ENABLE)), yes)
 	OPT_DEFS += -DTAP_DANCE_ENABLE
 	SRC += $(QUANTUM_DIR)/process_keycode/process_tap_dance.c
+endif
+
+ifeq ($(strip $(PRINTING_ENABLE)), yes)
+	OPT_DEFS += -DPRINTING_ENABLE
+	SRC += $(QUANTUM_DIR)/process_keycode/process_printer.c
+	SRC += $(TMK_DIR)/protocol/serial_uart.c
 endif
 
 ifeq ($(strip $(SERIAL_LINK_ENABLE)), yes)
@@ -207,7 +234,11 @@ OPT_DEFS += $(TMK_COMMON_DEFS)
 EXTRALDFLAGS += $(TMK_COMMON_LDFLAGS)
 
 ifeq ($(PLATFORM),AVR)
+ifeq ($(strip $(PROTOCOL)), VUSB)
+	include $(TMK_PATH)/protocol/vusb.mk
+else
 	include $(TMK_PATH)/protocol/lufa.mk
+endif
 	include $(TMK_PATH)/avr.mk
 endif
 
