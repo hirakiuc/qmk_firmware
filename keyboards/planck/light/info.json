@@ -1,0 +1,5 @@
+{
+  "keyboard_name": "Planck Light",
+  "keyboard_folder": "planck/light",
+  "bootloader": "qmk-dfu"
+}

@@ -1,5 +1,5 @@
 /*
-Copyright 2012,2013 Jun Wako <wakojun@gmail.com>
+Copyright 2012-2016 Jun Wako <wakojun@gmail.com>
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
@@ -23,6 +23,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "action.h"
 #if defined(__AVR__)
 #include <avr/pgmspace.h>
+#elif defined PROTOCOL_CHIBIOS
+//We need to ensure that chibios is include before redefining reset
+#include "ch.h"
 #endif
 #include "keycode.h"
 #include "action_macro.h"
