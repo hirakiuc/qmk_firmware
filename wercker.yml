@@ -2,7 +2,7 @@
 # Docker Hub https://registry.hub.docker.com/_/debian/
 # Read more about containers on our dev center
 # http://devcenter.wercker.com/docs/containers/index.html
-box: edasque/qmk_firmware
+box: hirakiuchi/qmk_firmware
 # You can also use services such as databases. Read more on our dev center:
 # http://devcenter.wercker.com/docs/services/index.html
 # services:
@@ -23,18 +23,18 @@ build:
     - script:
         name: make
         code: |
-          make clean; make keyboard=ergodox subproject=ez keymap=hirakiuc
+          make clean; make ergodox_ez:hirakiuc
   after-steps:
     - script:
         name: copy build result
         code: |
-          ls -l ./*.hex
-          cp ./ergodox_ez_hirakiuc.hex ${WERCKER_REPORT_ARTIFACTS_DIR}
+          ls -l ./.build/*.hex
+          cp ./.build/ergodox_ez_hirakiuc.hex ${WERCKER_REPORT_ARTIFACTS_DIR}
 
 release:
   steps:
     - tcnksm/ghr:
         token: $GITHUB_TOKEN
-        input: ./ergodox_ez_hirakiuc.hex
+        input: ./.build/ergodox_ez_hirakiuc.hex
         pre_release: true
         replace: true
