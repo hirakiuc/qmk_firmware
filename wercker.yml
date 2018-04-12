@@ -16,25 +16,26 @@ box: hirakiuchi/qmk_firmware
 # Read more about pipelines on our dev center
 # http://devcenter.wercker.com/docs/pipelines/index.html
 build:
-    # Steps make up the actions in your pipeline
-    # Read more about steps on our dev center:
-    # http://devcenter.wercker.com/docs/steps/index.html
   steps:
     - script:
-        name: make
+        name: Build firmware
         code: |
           make clean; make ergodox_ez:hirakiuc
-  after-steps:
     - script:
-        name: copy build result
+        name: Copy build result
         code: |
-          ls -l ./.build/*.hex
-          cp ./.build/ergodox_ez_hirakiuc.hex ${WERCKER_REPORT_ARTIFACTS_DIR}
+          cp ./.build/*.hex ${WERCKER_REPORT_ARTIFACTS_DIR}
 
 release:
   steps:
+    - script:
+        name: Prepare release
+        code: |
+          cp ./.build/*.hex ${WERCKER_REPORT_ARTIFACTS_DIR}
+          mkdir ./dist
+          cp ./.build/*.hex ./dist/
     - tcnksm/ghr:
         token: $GITHUB_TOKEN
-        input: ./.build/ergodox_ez_hirakiuc.hex
+        input: ./dist
         pre_release: true
         replace: true
