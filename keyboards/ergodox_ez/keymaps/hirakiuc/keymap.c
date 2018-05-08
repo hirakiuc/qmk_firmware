@@ -31,9 +31,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *                                      ,-------------.       ,-------------.
  *                                      |AltShf| LGui |       | Alt  |Ctrl/Esc|
  *                               ,------|------|------|       |------+--------+------.
- *                               |      |      | Home |       | R_Cmd|        |      |
+ *                               |      |      |(MDIA)|       | R_Cmd|        |      |
  *                               | Space|Backsp|------|       |------|  Tab   |Enter |
- *                               |      |ace   | End  |       | Esc  |        |      |
+ *                               |      |ace   |(SYMB)|       | Esc  |        |      |
  *                               `--------------------'       `----------------------'
  */
 // If it accepts an argument (i.e, is a function), it doesn't need KC_.
@@ -46,8 +46,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT,        KC_Z,         KC_X,   KC_C,   KC_V,   KC_B,   KC_LBRC,
         KC_LCTRL,       KC_GRV,      LALT(KC_LSFT),  KC_LEFT,KC_RGHT,
                                               LALT(KC_LSFT),  KC_LGUI,
-                                                              KC_HOME,
-                                               KC_SPC,KC_BSPC,KC_END,
+                                                              MO(MDIA),
+                                               KC_SPC,KC_BSPC,MO(SYMB),
         // right hand
         KC_RCBR,        KC_6,   KC_7,   KC_8,   KC_9,   KC_0,             KC_MINS,
         KC_RPRN,        KC_Y,   KC_U,   KC_I,   KC_O,   KC_P,             KC_BSLS,
