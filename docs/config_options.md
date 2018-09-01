@@ -61,10 +61,18 @@ This is a C header file that is one of the first things included, and will persi
   * COL2ROW or ROW2COL - how your matrix is configured. COL2ROW means the black mark on your diode is facing to the rows, and between the switch and the rows.
 * `#define AUDIO_VOICES`
   * turns on the alternate audio voices (to cycle through)
+* `#define C4_AUDIO`
+  * enables audio on pin C4
+* `#define C5_AUDIO`
+  * enables audio on pin C5
 * `#define C6_AUDIO`
   * enables audio on pin C6
 * `#define B5_AUDIO`
-  * enables audio on pin B5 (duophony is enable if both are enabled)
+  * enables audio on pin B5 (duophony is enables if one of B[5-7]_AUDIO is enabled along with one of C[4-6]_AUDIO)
+* `#define B6_AUDIO`
+  * enables audio on pin B6 (duophony is enables if one of B[5-7]_AUDIO is enabled along with one of C[4-6]_AUDIO)
+* `#define B7_AUDIO`
+  * enables audio on pin B7 (duophony is enables if one of B[5-7]_AUDIO is enabled along with one of C[4-6]_AUDIO)
 * `#define BACKLIGHT_PIN B7`
   * pin of the backlight - B5, B6, B7 use PWM, others use softPWM
 * `#define BACKLIGHT_LEVELS 3`
@@ -81,6 +89,10 @@ This is a C header file that is one of the first things included, and will persi
   * tries to keep switch state consistent with keyboard LED state
 * `#define IS_COMMAND() ( keyboard_report->mods == (MOD_BIT(KC_LSHIFT) | MOD_BIT(KC_RSHIFT)) )`
   * key combination that allows the use of magic commands (useful for debugging)
+* `#define USB_MAX_POWER_CONSUMPTION`
+  * sets the maximum power (in mA) over USB for the device (default: 500)
+* `#define SCL_CLOCK 100000L`
+  * sets the SCL_CLOCK speed for split keyboards. The default is `100000L` but some boards can be set to `400000L`.
 
 ## Features That Can Be Disabled
 
@@ -108,26 +120,32 @@ If you define these options you will enable the associated feature, which may in
 * `#define FORCE_NKRO`
   * NKRO by default requires to be turned on, this forces it on during keyboard startup regardless of EEPROM setting. NKRO can still be turned off but will be turned on again if the keyboard reboots.
 * `#define PREVENT_STUCK_MODIFIERS`
-  * when switching layers, this will release all mods
+  * stores the layer a key press came from so the same layer is used when the key is released, regardless of which layers are enabled
 
 ## Behaviors That Can Be Configured
 
 * `#define TAPPING_TERM 200`
-  * how long before a tap becomes a hold
+  * how long before a tap becomes a hold, if set above 500, a key tapped during the tapping term will turn it into a hold too
 * `#define RETRO_TAPPING`
   * tap anyway, even after TAPPING_TERM, if there was no other key interruption between press and release
+  * See [Retro Tapping](feature_advanced_keycodes.md#retro-tapping) for details
 * `#define TAPPING_TOGGLE 2`
   * how many taps before triggering the toggle
 * `#define PERMISSIVE_HOLD`
   * makes tap and hold keys work better for fast typers who don't want tapping term set above 500
+  * See [Permissive Hold](feature_advanced_keycodes.md#permissive-hold) for details
+* `#define IGNORE_MOD_TAP_INTERRUPT`
+  * makes it possible to do rolling combos (zx) with keys that convert to other keys on hold
+  * See [Mod tap interrupt](feature_advanced_keycodes.md#mod-tap-interrupt) for details
+* `#define TAPPING_FORCE_HOLD`
+  * makes it possible to use a dual role key as modifier shortly after having been tapped
+  * See [Hold after tap](feature_advanced_keycodes.md#hold-after-tap)
 * `#define LEADER_TIMEOUT 300`
   * how long before the leader key times out
 * `#define ONESHOT_TIMEOUT 300`
   * how long before oneshot times out
 * `#define ONESHOT_TAP_TOGGLE 2`
   * how many taps before oneshot toggle is triggered
-* `#define IGNORE_MOD_TAP_INTERRUPT`
-  * makes it possible to do rolling combos (zx) with keys that convert to other keys on hold
 * `#define QMK_KEYS_PER_SCAN 4`
   * Allows sending more than one key per scan. By default, only one key event gets
     sent via `process_record()` per scan. This has little impact on most typing, but
@@ -163,6 +181,16 @@ If you define these options you will enable the associated feature, which may in
 * `#define MOUSEKEY_MAX_SPEED 7`
 * `#define MOUSEKEY_WHEEL_DELAY 0`
 
+## Split Keyboard Options
+
+Split Keyboard specific options, make sure you have 'SPLIT_KEYBOARD = yes' in your rules.mk
+
+* `#define SPLIT_HAND_PIN B7`
+  * For using high/low pin to determine handedness, low = right hand, high = left hand. Replace 'B7' with the pin you are using. This is optional and you can still use the EEHANDS method or MASTER_LEFT / MASTER_RIGHT defines like the stock Let's Split uses.
+  
+* `#define USE_I2C`
+  * For using I2C instead of Serial (defaults to serial)
+
 # The `rules.mk` File
 
 This is a [make](https://www.gnu.org/software/make/manual/make.html) file that is included by the top-level `Makefile`. It is used to set some information about the MCU that we will be compiling for as well as enabling and disabling certain features.
@@ -171,6 +199,8 @@ This is a [make](https://www.gnu.org/software/make/manual/make.html) file that i
 
 * `DEFAULT_FOLDER`
   * Used to specify a default folder when a keyboard has more than one sub-folder.
+* `FIRMWARE_FORMAT`
+  * Defines which format (bin, hex) is copied to the root `qmk_firmware` folder after building.
 * `SRC`
   * Used to add files to the compilation/linking list.
 * `LAYOUTS`
@@ -216,3 +246,5 @@ Use these to enable or disable building certain features. The more you have enab
   * Unicode
 * `BLUETOOTH_ENABLE`
   * Enable Bluetooth with the Adafruit EZ-Key HID
+* `SPLIT_KEYBOARD`
+  * Enables split keyboard support (dual MCU like the let's split and bakingpy's boards) and includes all necessary files located at quantum/split_common
