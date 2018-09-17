@@ -66,11 +66,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
         EQL,     Q,     W,     E,     R,     T,                      Y,     U,     I,     O,     P,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLTB,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  GUQU,\
+        TAB,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  GUQU,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,\
+       LCTL,     Z,     X,     C,     V,     B,                      N,     M,  COMM,   DOT,  SLSH,  RSFT,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                 SPC,   LOWER,  BSPC,      ENT,  RAISE,  ESC  \
+                                 LOWER,    SPC, BSPC,       ENT,   ESC, RAISE  \
                               //`--------------------'  `--------------------'
   ),
 
@@ -78,11 +78,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
        TILD,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,  MINS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLTB,    F1,    F2,    F3,    F4,  ALSF,                   LEFT, DOWN,     UP,  RGHT,   F10,  PIPE,\
+        TAB,    F1,    F2,    F3,    F4,  ALSF,                   LEFT, DOWN,     UP,  RGHT,  PIPE,  PLUS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,   F11,   F12,  LBRC,  LPRN,  LCBR,                   RCBR, RPRN,   RBRC,   F19,   F20,   GRV,\
+       LCTL,   F11,   F12,  LBRC,  LPRN,  LCBR,                   RCBR, RPRN,   RBRC,   F19,   F20,   GRV,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                 SPC,   LOWER,  BSPC,      ENT,  RAISE,  ESC  \
+                                 LOWER,    SPC, BSPC,       ENT,   ESC, RAISE  \
                               //`--------------------'  `--------------------'
   ),
 
@@ -90,11 +90,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
         EQL,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,  BSPC,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-      CTLTB,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,   F11,\
+        TAB,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,   F11,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT, XXXXX, XXXXX, XXXXX, XXXXX, GUIEI,                  ALTKN,  PLUS,  LBRC,  RBRC,  BSLS,  TILD,\
+       LCTL, XXXXX, XXXXX, XXXXX, XXXXX, GUIEI,                  ALTKN,  PLUS,  LBRC,  RBRC,  BSLS,  TILD,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                 SPC,   LOWER,  BSPC,      ENT,  RAISE,  ESC  \
+                                 LOWER,    SPC, BSPC,       ENT,   ESC, RAISE  \
                               //`--------------------'  `--------------------'
   ),
 
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
       LSMOD,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-                                 SPC,   LOWER,  BSPC,      ENT,  RAISE,  ESC  \
+                                 LOWER,    SPC, BSPC,       ENT,   ESC, RAISE  \
                               //`--------------------'  `--------------------'
   )
 };
