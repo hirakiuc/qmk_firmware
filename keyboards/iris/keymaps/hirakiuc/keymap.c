@@ -57,11 +57,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,----+----+----+----+----+----.              ,----+----+----+----+----+----.
      TILD,EXLM, AT ,HASH,DLR ,PERC,               CIRC,AMPR,ASTR,LPRN,RPRN,BSPC,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     RST ,    ,    ,LBRC,LPRN,LCBR,               RCBR,RPRN,RBRC,    ,    ,    ,
+     TAB ,    ,    ,LBRC,LPRN,LCBR,               RCBR,RPRN,RBRC,    ,    ,    ,
   //|----+----+----+----+----+----|              |----+----+----+----+----+----|
-     DEL ,    ,LEFT,RGHT, UP ,LBRC,               LEFT,DOWN, UP ,RGHT,PLUS,PIPE,
+     LSFT ,    ,LEFT,RGHT, UP ,LBRC,               LEFT,DOWN, UP ,RGHT,PLUS,PIPE,
   //|----+----+----+----+----+----+----.    ,----|----+----+----+----+----+----|
-     BL_S,    ,    ,    ,DOWN,LCBR,ALSF,     RGUI,RCBR, P1 , P2 , P3 ,MINS,EQL ,
+     LCTL,    ,    ,    ,DOWN,LCBR,ALSF,     RGUI,RCBR, P1 , P2 , P3 ,MINS,EQL ,
   //`----+----+----+--+-+----+----+----/    \----+----+----+----+----+----+----'
                            ,    ,DEL ,         DEL ,    , P0
   //                  `----+----+----'        `----+----+----'
