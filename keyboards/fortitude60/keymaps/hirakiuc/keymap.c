@@ -42,7 +42,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
  * | Ctrl |   Z  |   X  |   C  |   V  |   B  | ALSF | RGUI |   N  |   M  |   ,  |   .  |   /  |  GRV |
  * `-------------+------+------+------+------+------+------+------+------+------+------+-------------'
- *               |  GUI |  Alt |Lower | BSPC |  SPC |Enter |  ESC |Raise |  Alt |  GUI |
+ *               |  GUI |  Alt |Lower |  SPC | BSPC |Enter |  ESC |Raise |  Alt |  GUI |
  *               `---------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT( \
@@ -50,7 +50,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                   KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS, \
   KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                   KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_GUQU, \
   KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B, KC_ALSF, KC_RGUI, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_GRV , \
-                 KC_LGUI, KC_LALT,   LOWER, KC_BSPC, KC_SPC, KC_ENT,  KC_ESC, RAISE,    KC_RALT, KC_RGUI\
+                 KC_LGUI, KC_LALT,   LOWER,  KC_SPC, KC_BSPC, KC_ENT,  KC_ESC, RAISE,    KC_RALT, KC_RGUI\
 ),
 
 /* Lower
@@ -63,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------+-------------+------+------+------+------+------+------|
  * | Ctrl |      |      |      |      |      | ALSF | RGUI |      |      |      |      |      |      |
  * `-------------+------+------+------+------+------+------+------+------+------+------+-------------'
- *               | LGUI | LALT |      | BSPC | SPC |  ENT |  ESC | RAISE| RALT | RGUI |
+ *               | LGUI | LALT |      |  SPC | BSPC |  ENT |  ESC | RAISE| RALT | RGUI |
  *               `---------------------------------------------------------------------'
  */
 [_LOWER] = LAYOUT( \
@@ -71,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_RST,  _______, _______, KC_LBRC, KC_LPRN, KC_LCBR,                   KC_RCBR, KC_RPRN, KC_RBRC, _______, _______, _______, \
   KC_LSFT, _______, _______, _______, _______, _______,                   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT, KC_PLUS, KC_PIPE, \
   KC_LCTL, _______, _______, _______, _______, _______, KC_ALSF, KC_RGUI, _______,  _______, _______,_______, _______, _______, \
-                    KC_LGUI, KC_LALT, _______, KC_BSPC, KC_SPC,  KC_ENT,  KC_ESC, RAISE, KC_RALT, KC_RGUI\
+                    KC_LGUI, KC_LALT, _______, KC_SPC,  KC_BSPC,  KC_ENT,  KC_ESC, RAISE, KC_RALT, KC_RGUI\
 ),
 
 /* Raise
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_GRV,  KC_1,    KC_UP,   KC_3,    KC_4,    KC_5,                       KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC, \
   KC_LSFT, KC_LEFT, KC_DOWN, KC_RGHT, KC_F4,   KC_F5,                      KC_F6,KC_MINS,  KC_EQL, KC_LBRC, KC_RBRC,    KC_BSLS, \
   KC_LCTL, KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_ALSF, KC_RGUI,  KC_F12,  KC_NUHS, KC_NUBS, _______, _______, _______, \
-                    KC_LGUI, KC_LALT, _______, KC_BSPC, KC_SPC,  KC_ENT,  KC_ESC, RAISE, KC_RALT, KC_RGUI\
+                    KC_LGUI, KC_LALT, _______, KC_SPC,  KC_BSPC,  KC_ENT,  KC_ESC, RAISE, KC_RALT, KC_RGUI\
 ),
 
 /* Adjust (Lower + Raise)
