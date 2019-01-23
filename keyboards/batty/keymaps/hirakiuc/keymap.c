@@ -70,19 +70,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,     Z,     X,     C,     V,     B,  ALSF,     RGUI,     N,     M,  COMM,   DOT,  SLSH,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                       LOWR,   SPC,  BSPC,      ENT,   ESC,  RASE,                        GRV \
+      LCTRL,                      LOWER,   SPC,  BSPC,      ENT,   ESC, RAISE,                        GRV \
                               //`--------------------'  `--------------------'
   ),
 
   [_LOWER] = LAYOUT_bt( \
   //,-----------------------------------------.                ,-----------------------------------------.
-       TILD,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,  MINS,\
+       TILD,  EXLM,    AT,  LBRC,  LPRN,  LCBR,                   RCBR,  RPRN,  RBRC,  LPRN,  RPRN,  MINS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        TAB, XXXXX, XXXXX,  LBRC,  LPRN,  LCBR,                   RCBR,  RPRN,  RBRC, xxxxx,  PLUS,  PIPE,\
+        TAB, XXXXX, XXXXX,  LBRC,  LPRN,  LCBR,                   LEFT,  DOWN,    UP,  RGHT,  PLUS,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  ALSF,     RGUI,  UNDS,  PLUS,  LBRC,  RBRC,  BSLS,  GUQU,\
+       LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  ALSF,     RGUI,  UNDS,  PLUS,  LBRC,  RBRC,  PIPE,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                       LOWR,   SPC,  BSPC,      ENT,   ESC,  RASE,                        GRV \
+      LCTRL,                      LOWER,   SPC,  BSPC,      ENT,   ESC, RAISE,                        GRV \
                               //`--------------------'  `--------------------'
   ),
 
@@ -90,11 +90,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
         EQL,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,  MINS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        TAB,    F1,    F2,    F3,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,  BSLS,\
+        TAB,    F1,    F2,  VOLU,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,   F11,   F12,   F13,   F14,   F15,  ALSF,     RGUI,   F16,   F17,   F18,   F19,   F20,  GUQU,\
+       LSFT,   F11,   F12,  VOLD,   F14,   F15,  ALSF,     RGUI,   F16,   F17,   F18,   F19,   F20,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                       LOWR,   SPC,  BSPC,      ENT,   ESC,  RASE,                        GRV \
+      LCTRL,                      LOWER,   SPC,  BSPC,      ENT,   ESC, RAISE,                        GRV \
                               //`--------------------'  `--------------------'
   ),
 
@@ -106,7 +106,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,  ALSF,     RGUI, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                       LOWR,   SPC,  BSPC,      ENT,   ESC,  RASE,                        GRV \
+      LCTRL,                      LOWER,   SPC,  BSPC,      ENT,   ESC, RAISE,                        GRV \
                               //`--------------------'  `--------------------'
   )
 };
