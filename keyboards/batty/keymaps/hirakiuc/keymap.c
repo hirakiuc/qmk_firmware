@@ -76,9 +76,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_LOWER] = LAYOUT_bt( \
   //,-----------------------------------------.                ,-----------------------------------------.
-       TILD,  EXLM,    AT,  LBRC,  LPRN,  LCBR,                   RCBR,  RPRN,  RBRC,  LPRN,  RPRN,  MINS,\
+       TILD,  EXLM,    AT,  HASH,   DLR,  PERC,                   CIRC,  AMPR,  ASTR,  LPRN,  RPRN,  MINS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        TAB, XXXXX, XXXXX,  LBRC,  LPRN,  LCBR,                   LEFT,  DOWN,    UP,  RGHT,  PLUS,  BSLS,\
+        TAB, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   LEFT,  DOWN,    UP,  RGHT,  PLUS,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  ALSF,     RGUI,  UNDS,  PLUS,  LBRC,  RBRC,  PIPE,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
@@ -90,9 +90,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //,-----------------------------------------.                ,-----------------------------------------.
         EQL,     1,     2,     3,     4,     5,                      6,     7,     8,     9,     0,  MINS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-        TAB,    F1,    F2,  VOLU,    F4,    F5,                     F6,    F7,    F8,    F9,   F10,  BSLS,\
+        TAB, XXXXX,  VOLU,  LBRC,  LPRN,  LCBR,                   RCBR,  RPRN,   RBRC,    F9,   F10,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,   F11,   F12,  VOLD,   F14,   F15,  ALSF,     RGUI,   F16,   F17,   F18,   F19,   F20,  GUQU,\
+       LSFT, XXXXX,  VOLD, XXXXX, XXXXX, XXXXX,  ALSF,     RGUI, XXXXX, XXXXX,  XXXXX, XXXXX, XXXXX,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
       LCTRL,                      LOWER,   SPC,  BSPC,      ENT,   ESC, RAISE,                        GRV \
                               //`--------------------'  `--------------------'
