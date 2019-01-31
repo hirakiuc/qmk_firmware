@@ -61,6 +61,9 @@ enum macro_keycodes {
 #define KC_ALSF LALT(KC_LSFT)
 #define KC_GUQU GUI_T(KC_QUOT)
 
+#define KC_RAI(kc) LT(_RAISE, KC_##kc)
+#define KC_LOW(kc) LT(_LOWER, KC_##kc)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_bt( \
   //,-----------------------------------------.                ,-----------------------------------------.
@@ -70,7 +73,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,     Z,     X,     C,     V,     B,  ALSF,     RGUI,     N,     M,  COMM,   DOT,  SLSH,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                      LOWER,   SPC,  BSPC,      ENT,   ESC, RAISE,                        GRV \
+      LCTRL,                      LOWER,LOW(SPC),BSPC,      ENT,RAI(ESC), RAISE,                      GRV \
                               //`--------------------'  `--------------------'
   ),
 
@@ -82,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  ALSF,     RGUI,  UNDS,  PLUS,  LBRC,  RBRC,  PIPE,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                      LOWER,   SPC,  BSPC,      ENT,   ESC, RAISE,                        GRV \
+      LCTRL,                      LOWER,LOW(SPC),BSPC,      ENT,RAI(ESC), RAISE,                      GRV \
                               //`--------------------'  `--------------------'
   ),
 
@@ -94,7 +97,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT, XXXXX,  VOLD, XXXXX, XXXXX, XXXXX,  ALSF,     RGUI, XXXXX, XXXXX,  XXXXX, XXXXX, XXXXX,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                      LOWER,   SPC,  BSPC,      ENT,   ESC, RAISE,                        GRV \
+      LCTRL,                      LOWER,LOW(SPC),BSPC,      ENT,RAI(ESC), RAISE,                      GRV \
                               //`--------------------'  `--------------------'
   ),
 
@@ -106,7 +109,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
        LSFT,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,  ALSF,     RGUI, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                      LOWER,   SPC,  BSPC,      ENT,   ESC, RAISE,                        GRV \
+      LCTRL,                      LOWER,LOW(SPC),BSPC,      ENT,RAI(ESC), RAISE,                      GRV \
                               //`--------------------'  `--------------------'
   )
 };
