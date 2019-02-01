@@ -61,6 +61,7 @@ enum macro_keycodes {
 #define KC_ALSF LALT(KC_LSFT)
 #define KC_GUQU GUI_T(KC_QUOT)
 
+#define KC_RGI(kc) RGUI_T(KC_##kc)
 #define KC_RAI(kc) LT(_RAISE, KC_##kc)
 #define KC_LOW(kc) LT(_LOWER, KC_##kc)
 
@@ -71,9 +72,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB,     A,     S,     D,     F,     G,                      H,     J,     K,     L,  SCLN,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,     Z,     X,     C,     V,     B,  ALSF,     RGUI,     N,     M,  COMM,   DOT,  SLSH,  GUQU,\
+       LSFT,     Z,     X,     C,     V,     B, LANG2,  RGI(LANG1),  N,     M,  COMM,   DOT,  SLSH,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                      LANG2,LOW(SPC),BSPC,      ENT,RAI(ESC), LANG1,                      GRV \
+      LCTRL,                       ALSF,LOW(SPC),BSPC,      ENT,RAI(ESC),LANG1,                      GRV \
                               //`--------------------'  `--------------------'
   ),
 
@@ -83,9 +84,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,                   LEFT,  DOWN,    UP,  RGHT,  PLUS,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  ALSF,     RGUI,  UNDS,  PLUS,  LBRC,  RBRC,  PIPE,  GUQU,\
+       LSFT, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX, LANG2,  RGI(LANG1),  UNDS,  PLUS,  LBRC,  RBRC,  PIPE,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                      LANG2,LOW(SPC),BSPC,      ENT,RAI(ESC), LANG1,                      GRV \
+      LCTRL,                       ALSF,LOW(SPC),BSPC,      ENT,RAI(ESC),LANG1,                      GRV \
                               //`--------------------'  `--------------------'
   ),
 
@@ -95,9 +96,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB, XXXXX,  VOLU,  LBRC,  LPRN,  LCBR,                   RCBR,  RPRN,  RBRC, XXXXX, XXXXX,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT, XXXXX,  VOLD, XXXXX, XXXXX, XXXXX,  ALSF,     RGUI, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  GUQU,\
+       LSFT, XXXXX,  VOLD, XXXXX, XXXXX, XXXXX, LANG2,  RGI(LANG1), XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                      LANG2,LOW(SPC),BSPC,      ENT,RAI(ESC), LANG1,                      GRV \
+      LCTRL,                       ALSF,LOW(SPC),BSPC,      ENT,RAI(ESC),LANG1,                      GRV \
                               //`--------------------'  `--------------------'
   ),
 
@@ -107,9 +108,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB,  LHUI,  LSAI,  LVAI, XXXXX, XXXXX,                  XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,  ALSF,     RGUI, XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  GUQU,\
+       LSFT,  LHUD,  LSAD,  LVAD, XXXXX, XXXXX,  LANG2, RGI(LANG1), XXXXX, XXXXX, XXXXX, XXXXX, XXXXX,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
-      LCTRL,                      LANG2,LOW(SPC),BSPC,      ENT,RAI(ESC), LANG1,                      GRV \
+      LCTRL,                       ALSF,LOW(SPC),BSPC,      ENT,RAI(ESC),LANG1,                      GRV \
                               //`--------------------'  `--------------------'
   )
 };
