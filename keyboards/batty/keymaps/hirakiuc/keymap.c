@@ -65,6 +65,9 @@ enum macro_keycodes {
 #define KC_RAI(kc) LT(_RAISE, KC_##kc)
 #define KC_LOW(kc) LT(_LOWER, KC_##kc)
 
+// screenshot
+#define KC_SS SGUI(KC_4)
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_QWERTY] = LAYOUT_bt( \
   //,-----------------------------------------.                ,-----------------------------------------.
@@ -96,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
         TAB, XXXXX,  VOLU,  LBRC,  LPRN,  LCBR,                   RCBR,  RPRN,  RBRC, XXXXX, XXXXX,  BSLS,\
   //|------+------+------+------+------+------|                |------+------+------+------+------+------|
-       LSFT, XXXXX,  VOLD, XXXXX, XXXXX, XXXXX, LANG1,  RGI(LANG2),XXXXX,XXXXX,XXXXX, XXXXX, XXXXX,  GUQU,\
+       LSFT, XXXXX,  VOLD, XXXXX, XXXXX, XXXXX, LANG1,  RGI(LANG2), SS, XXXXX, XXXXX, XXXXX, XXXXX,  GUQU,\
   //|------+------+------+------+------+------+------|  |------+------+------+------+------+------+------|
       LCTRL,                       ALSF,LOW(SPC),BSPC,      ENT,RAI(ESC),LANG2,                      GRV \
                               //`--------------------'  `--------------------'
